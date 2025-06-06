@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь 2025</title>
+    <link rel="stylesheet" href="style.css">
+  
+</head>
+<body>
+    <h1 style="text-align:center;">Календарь на 2025 год</h1>
+    <div id="calendar-container"></div>
+
+    <script>
+        function getDay(date) {
+            let day = date.getDay();
+            return (day === 0) ? 6 : day - 1; // понедельник — 0
+        }
+
+        function createCalendarHTML(year, month) {
+            const monthName = new Date(year, month - 1).toLocaleString('ru-RU', { month: 'long' });
+            let d = new Date(year, month - 1, 1);
+            let html = `<table><caption>${monthName} ${year}</caption><tr>
+                <th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th>
+            </tr><tr>`;
+
+            for (let i = 0; i < getDay(d); i++) html += '<td></td>';
+
+            while (d.getMonth() === month - 1) {
+                html += `<td>${d.getDate()}</td>`;
+                if (getDay(d) === 6) html += '</tr><tr>';
+                d.setDate(d.getDate() + 1);
+            }
+
+            let lastDay = getDay(d);
+            if (lastDay !== 0) {
+                for (let i = lastDay; i < 7; i++) html += '<td></td>';
+            }
+
+            html += '</tr></table>';
+            return html;
+        }
+
+        const container = document.getElementById('calendar-container');
+        for (let m = 1; m <= 12; m++) {
+            container.innerHTML += createCalendarHTML(2026, m);
+        }
+    </script>
+</body>
+</html>

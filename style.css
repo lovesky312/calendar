@@ -1,0 +1,26 @@
+#calendar-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+        table {
+            border-collapse: collapse;
+            width: 220px;
+        }
+        caption {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 16px;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 6px;
+            text-align: center;
+            font-size: 14px;
+        }
+        th {
+            background-color: rgb(44, 153, 248);
+            color: white;
+        }
